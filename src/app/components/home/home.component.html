@@ -1,0 +1,96 @@
+<div class="container">
+  @if(this.globalLoaderServiceService.getShowProgressBar){
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+  <mat-toolbar color="primary" class="toolbar">
+    <button
+      mat-icon-button
+      matTooltip="menu"
+      matTooltipPosition="after"
+      (click)="snav.toggle()"
+      #menuTooltip="matTooltip"
+      (mouseleave)="menuTooltip.hide()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="home"
+      matTooltipPosition="after"
+      #homeTooltip="matTooltip"
+      (mouseleave)="homeTooltip.hide()"
+      (click)="snav.close()"
+      [routerLink]="'/'"
+      [skipLocationChange]="true"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <h1>Website</h1>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      matTooltip="back"
+      matTooltipPosition="before"
+      #backTooltip="matTooltip"
+      (mouseleave)="backTooltip.hide()"
+      disabled
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="forward"
+      matTooltipPosition="before"
+      #forwardTooltip="matTooltip"
+      (mouseleave)="forwardTooltip.hide()"
+      disabled
+    >
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="login"
+      matTooltipPosition="before"
+      #loginTooltip="matTooltip"
+      (mouseleave)="loginTooltip.hide()"
+      *ngIf="!this.authService.isLoggedIn()"
+      [routerLink]="'login'"
+      [skipLocationChange]="true"
+    >
+      <mat-icon>login</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="logout"
+      matTooltipPosition="before"
+      #logoutTooltip="matTooltip"
+      (mouseleave)="logoutTooltip.hide()"
+      *ngIf="this.authService.isLoggedIn()"
+      (click)="authService.logout()"
+      [routerLink]="'/'"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matTooltip="settings"
+      matTooltipPosition="before"
+      #settingsTooltip="matTooltip"
+      (mouseleave)="hideSettingsTooltip()"
+      disabled
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [mode]="'push'">
+      <app-side-menu></app-side-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="bg-color">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

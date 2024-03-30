@@ -1,0 +1,24 @@
+<div class="padding bg-color">
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <a
+        (click)="closeSideNav()"
+        mat-button
+        [routerLink]="'table-api'"
+        [skipLocationChange]="true"
+      >
+        Table
+      </a>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <a
+        (click)="closeSideNav()"
+        mat-button
+        [routerLink]="'form'"
+        [skipLocationChange]="true"
+      >
+        Form
+      </a>
+    </mat-list-item>
+  </mat-list>
+</div>
